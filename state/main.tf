@@ -1,20 +1,20 @@
 provider "aws" {
-    # This profile maps to the profile name defined in your ~/.aws/credentials
-    profile    = "terraform"
+  # This profile maps to the profile name defined in your ~/.aws/credentials
+  profile = "terraform"
 
-    # The default AWS region
-    region     = "eu-west-2"
+  # The default AWS region
+  region = "eu-west-2"
 
-    # Fix a version
-    version = "~> 2.56"
+  # Fix a version
+  version = "~> 2.56"
 }
 
 resource "aws_s3_bucket" "terraform_state_bucket" {
-    bucket        = "terraform-state-${var.bucket_name_suffix}"
-    force_destroy = true
-    versioning {
-        enabled    = true
-    }
+  bucket        = "terraform-state-${var.bucket_name_suffix}"
+  force_destroy = true
+  versioning {
+    enabled = true
+  }
 }
 
 resource "aws_dynamodb_table" "terraform_state_lock_dev" {
